@@ -5,7 +5,7 @@ import random
 
 
 
-lados = 8 
+lados = 8
 celdas = []
 alpha = 0.05
 gamma = 0.95
@@ -20,13 +20,13 @@ tabla_Q = np.zeros((lados**2,4))
 
 
 def crear_ambiente():
-    penalities = 3
-    while penalities != 0:
+    obstaculos = int(lados*0.8)
+    while obstaculos != 0:
         i = r(0,lados-1)
         j = r(0,lados-1)
         if tabla_recompensa[i,j] == 0 and [i,j] != [0,0] and [i,j] != [lados-1,lados-1]:
             tabla_recompensa[i,j] = -100
-            penalities-= 1
+            obstaculos-= 1
             colores[lados*i+j] = (0,0,0)
             celdas.append(lados*i+j)
 
