@@ -8,7 +8,7 @@ import random
 lados = 8
 celdas = []
 alpha = 0.05
-gamma = 0.95
+gamma = 0.90
 celda_actual = [0,0]
 epsilon = 0.2
 min_epsilon = 0.05
@@ -17,6 +17,7 @@ colores = [(255,255,255) for i in range(lados**2)]
 acciones = {"arriba": 0,"abajo" : 1,"izquierda" : 2,"derecha" : 3} 
 estados = {}
 tabla_Q = np.zeros((lados**2,4)) 
+mostrar_tabla = True
 
 
 def crear_ambiente():
@@ -116,13 +117,13 @@ def distribucion():
             pygame.draw.rect(screen,colores[color],(j+3,i+3,j+95,i+95),0)
             color+=1
             pygame.draw.rect(screen,(15,15,255),((celda_actual[1]*100),(celda_actual[0]*100),100,100))
-
-    pygame.font.init()
-    fuente = pygame.font.Font(None, int(scry/len(tabla_Q)))
-    for i in range(len(tabla_Q)):
-        texto = fuente.render(str(tabla_Q[i]), 1, (255, 0, 0))
-        screen.blit(texto, (20, int(i*scry/len(tabla_Q))))
-    pygame.display.flip()
+    if mostrar_tabla:
+        pygame.font.init()
+        fuente = pygame.font.Font(None, int(scry/len(tabla_Q)))
+        for i in range(len(tabla_Q)):
+            texto = fuente.render(str(tabla_Q[i]), 1, (255, 0, 0))
+            screen.blit(texto, (20, int(i*scry/len(tabla_Q))))
+        pygame.display.flip()
     
 
 def main():
